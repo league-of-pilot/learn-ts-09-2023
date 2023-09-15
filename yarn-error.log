@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\danh2k\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js init
+  C:\Program Files\nodejs\node.exe C:\Users\danh2k\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add typescsript ts-node -D
 
 PATH: 
-  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\VMware\VMware Player\bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\GitHub CLI\;C:\Program Files\dotnet\;C:\Users\danh2k\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\danh2k\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts;C:\Users\danh2k\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\;D:\myDrive\mongosh-1.6.0-win32-x64\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\Users\danh2k\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\danh2k\AppData\Local\Programs\Python\Python310\;C:\Users\danh2k\AppData\Local\Microsoft\WindowsApps;C:\Users\danh2k\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\danh2k\AppData\Roaming\npm;C:\Users\danh2k\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\danh2k\AppData\Local\Programs\oh-my-posh\bin;C:\Users\danh2k\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts;C:\Users\danh2k\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\;D:\myDrive\mongosh-1.6.0-win32-x64\bin;C:\Users\danh2k\AppData\Local\Programs\Microsoft VS Code Insiders\bin;C:\Program Files\Graphviz\bin;C:\Users\danh2k\AppData\Local\gitkraken\bin
+  C:\Users\danh2k\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\danh2k\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\VMware\VMware Player\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\GitHub CLI;C:\Program Files\dotnet;C:\Users\danh2k\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\danh2k\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts;C:\Users\danh2k\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310;D:\myDrive\mongosh-1.6.0-win32-x64\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Users\danh2k\AppData\Local\Programs\Python\Python310\Scripts;C:\Users\danh2k\AppData\Local\Programs\Python\Python310;C:\Users\danh2k\AppData\Local\Microsoft\WindowsApps;C:\Users\danh2k\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\danh2k\AppData\Roaming\npm;C:\Users\danh2k\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\danh2k\AppData\Local\Programs\oh-my-posh\bin;C:\Users\danh2k\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts;C:\Users\danh2k\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310;D:\myDrive\mongosh-1.6.0-win32-x64\bin;C:\Users\danh2k\AppData\Local\Programs\Microsoft VS Code Insiders\bin;C:\Program Files\Graphviz\bin;C:\Users\danh2k\AppData\Local\gitkraken\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.22.18
@@ -14,20 +14,25 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: canceled
-      at Interface.<anonymous> (C:\Users\danh2k\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:137143:13)
-      at Interface.emit (node:events:514:28)
-      at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1131:18)
-      at ReadStream.onkeypress (node:internal/readline/interface:270:20)
-      at ReadStream.emit (node:events:514:28)
-      at emitKeys (node:internal/readline/utils:357:14)
-      at emitKeys.next (<anonymous>)
-      at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
-      at ReadStream.emit (node:events:514:28)
-      at addChunk (node:internal/streams/readable:324:12)
+  Error: https://registry.yarnpkg.com/typescsript: Not found
+      at params.callback [as _callback] (C:\Users\danh2k\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66138:18)
+      at self.callback (C:\Users\danh2k\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
+      at Request.emit (node:events:514:28)
+      at Request.<anonymous> (C:\Users\danh2k\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141855:10)
+      at Request.emit (node:events:514:28)
+      at IncomingMessage.<anonymous> (C:\Users\danh2k\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141777:12)
+      at Object.onceWrapper (node:events:628:28)
+      at IncomingMessage.emit (node:events:526:35)
+      at endReadableNT (node:internal/streams/readable:1359:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
 
 npm manifest: 
-  No manifest
+  {
+    "name": "ts-learn",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT"
+  }
 
 yarn manifest: 
   No manifest
