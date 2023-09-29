@@ -2,6 +2,7 @@
 // const { decoHouse } = require("./decoHouse")
 // const ExampleClass = require("./demo2")
 
+import { convertTz } from "./src/timezone";
 import { tzOrigin } from "./src/timezone/tzOrigin";
 import http from "http";
 
@@ -17,4 +18,5 @@ const server = http.createServer((req, res) => {
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
   console.log("🚀 index L21-tzOrigin", tzOrigin.length);
+  convertTz();
 });
