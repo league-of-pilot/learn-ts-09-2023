@@ -8,3 +8,5 @@ data/
 cache/dump.rdb
 access_log/
 action_log/
+
+*.result.json

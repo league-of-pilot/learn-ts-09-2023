@@ -1,6 +1,7 @@
 import { tzOrigin } from "./tzOrigin";
 import soft, { DisplayFormat } from "timezone-soft";
 import fs from "fs";
+// import path from "path";
 
 // Convert the object to JSON format
 const convertJsonData = (data: Object) => JSON.stringify(data, null, 2);
@@ -16,7 +17,11 @@ type ExtendSoft = DisplayFormat & {
 
 const genFileName = () => {
   const currentDate = new Date().getTime();
-  const fileName = `${currentDate}.json`;
+  const fileName = `${currentDate}.result.json`;
+
+  // __dirname return path where js is built
+  // how to get path where ts is written
+  // We use path.resolve() to obtain the absolute path.
   return fileName;
 };
 
