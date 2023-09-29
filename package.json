@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsc-watch --onSuccess index.ts"
+    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\""
   },
   "devDependencies": {
     "@types/node": "^20.6.0",
@@ -12,5 +12,9 @@
     "ts-node": "^10.9.1",
     "tsc-watch": "^6.0.4",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "spacetime": "^7.4.7",
+    "timezone-soft": "^1.4.1"
   }
 }

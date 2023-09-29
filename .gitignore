@@ -1,1 +1,10 @@
-node_modules
+dist/
+build/
+node_modules/
+package-lock.json
+.env
+log/
+data/
+cache/dump.rdb
+access_log/
+action_log/
