@@ -3,7 +3,7 @@
 // const ExampleClass = require("./demo2")
 
 import { convertTz, genTzSelect } from "./src/timezone";
-import { tzOrigin } from "./src/timezone/tzOrigin";
+import { tzOrigin } from "./src/timezone/tzOrigin.const";
 import http from "http";
 
 const hostname = "127.0.0.1";

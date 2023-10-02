@@ -8,8 +8,8 @@ import {
   quickSave,
   saveFile,
 } from "./tz.utils";
-import { tzOrigin } from "./tzOrigin";
-import { allTimezones } from "./tzSelect";
+import { tzOrigin } from "./tzOrigin.const";
+import { allTimezones } from "./tzSelect.const";
 // import path from "path";
 
 export const convertTz = () => {
