@@ -29,43 +29,88 @@ const saveFile = (filePath: string, data: string) => {
   // Write the JSON data to the file
   fs.writeFile(filePath, data, (err) => {
     if (err) {
-      console.error("Error writing to file:", err);
+      console.error("⚠️ Error writing to file:", err);
     } else {
-      console.log("Data has been written to", filePath);
+      console.log("✅ Data has been written to", filePath);
     }
   });
 };
 
-export const convertTz = () => {
-  //   for (let i = 0; i < tzOrigin.length; i++) {
-  //     const tz = tzOrigin[i];
-  const result = [] as any;
+export const compareName = (stringA, stringB) => {
+  // Split the input strings into words
+  const wordsA = stringA.split(" ");
+  const wordsB = stringB.split(" ");
 
-  for (let tz of tzOrigin) {
-    const timeSoft = soft(tz.value)[0] as ExtendSoft;
+  // Check if all words in stringB are in stringA
+  for (const wordB of wordsB) {
+    if (!wordsA.includes(wordB)) {
+      return false;
+    }
+  }
+
+  // If we reach this point, all words in stringB are in stringA
+  return true;
+};
+
+export const convertTz = () => {
+  const result = [] as any;
+  let error = 0;
+  let objFilter = {} as any;
+
+  for (let i = 0; i < tzOrigin.length; i++) {
+    let pushValue;
+    const tz = tzOrigin[i];
+    // for (let tz of tzOrigin) {
+    const searchText = tz.text.split(") ")[1];
+    const timeSoft = soft(searchText)[0] as ExtendSoft;
 
     if (!timeSoft) {
-      console.log("🚀 undefined", tz);
+      // console.log("🚀 undefined", tz);
+      tz.value = tz.value;
+      error++;
+      pushValue = tz;
     } else {
       const {
-        name,
+        name: timeSoftName,
         long: text,
         standard: { abbr, offset },
       } = timeSoft;
 
-      if (!name || !text || !abbr || !offset) {
-        console.log("🚀 index L40-timeSoft", timeSoft);
+      if (!timeSoftName || !text || !abbr) {
+        console.log("🚀 timeSoft - ", i, timeSoft);
+        console.log("🚀 tz - ", i, tz);
       }
 
+      const isUsedOrigin = compareName(tz.value, timeSoftName);
+      const finalValue = isUsedOrigin ? tz.value : timeSoftName;
+
       const objConvert = {
-        name: name ?? "✨ name",
+        value: finalValue,
         abbr,
         offset: offset ?? 0,
         text: text ?? "✨ name",
+        utc: tz.utc,
       };
-      result.push(objConvert);
+      pushValue = objConvert;
+    }
+
+    result.push(pushValue);
+
+    const abbr = pushValue.abbr;
+    if (!objFilter[abbr]) {
+      objFilter[abbr] = 1;
+    } else {
+      objFilter[abbr]++;
     }
   }
+
+  const filterDup = Object.entries(objFilter).filter(([key, value]) => {
+    const num = value as number;
+    return num > 1;
+  });
+
+  console.log("🚀 index L109-filterDup", filterDup);
+  console.log("🚀 index L74-error", error);
   const fileName = genFileName();
   saveFile(fileName, convertJsonData(result));
 };

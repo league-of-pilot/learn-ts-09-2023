@@ -17,6 +17,6 @@ const server = http.createServer((req, res) => {
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
-  console.log("🚀 index L21-tzOrigin", tzOrigin.length);
+  console.log("🚀 index L21-tzOrigin length", tzOrigin.length);
   convertTz();
 });
