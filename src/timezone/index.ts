@@ -1,56 +1,16 @@
+import spacetime from "spacetime";
+import soft from "timezone-soft";
+import { ExtendSoft, ILabelStyle, ITimezoneOption } from "./tz.type";
+import {
+  compareName,
+  convertJsonData,
+  genFileName,
+  quickSave,
+  saveFile,
+} from "./tz.utils";
 import { tzOrigin } from "./tzOrigin";
-import soft, { DisplayFormat } from "timezone-soft";
-import fs from "fs";
+import { allTimezones } from "./tzSelect";
 // import path from "path";
-
-// Convert the object to JSON format
-const convertJsonData = (data: Object) => JSON.stringify(data, null, 2);
-
-type ExtendSoft = DisplayFormat & {
-  name?: string;
-  long?: string;
-  standard: {
-    abbr: string;
-    offset: number;
-  };
-};
-
-const genFileName = () => {
-  const currentDate = new Date().getTime();
-  const fileName = `${currentDate}.result.json`;
-
-  // __dirname return path where js is built
-  // how to get path where ts is written
-  // We use path.resolve() to obtain the absolute path.
-  return fileName;
-};
-
-const saveFile = (filePath: string, data: string) => {
-  // Write the JSON data to the file
-  fs.writeFile(filePath, data, (err) => {
-    if (err) {
-      console.error("⚠️ Error writing to file:", err);
-    } else {
-      console.log("✅ Data has been written to", filePath);
-    }
-  });
-};
-
-export const compareName = (stringA, stringB) => {
-  // Split the input strings into words
-  const wordsA = stringA.split(" ");
-  const wordsB = stringB.split(" ");
-
-  // Check if all words in stringB are in stringA
-  for (const wordB of wordsB) {
-    if (!wordsA.includes(wordB)) {
-      return false;
-    }
-  }
-
-  // If we reach this point, all words in stringB are in stringA
-  return true;
-};
 
 export const convertTz = () => {
   const result = [] as any;
@@ -111,6 +71,70 @@ export const convertTz = () => {
 
   console.log("🚀 index L109-filterDup", filterDup);
   console.log("🚀 index L74-error", error);
-  const fileName = genFileName();
-  saveFile(fileName, convertJsonData(result));
+  quickSave(result);
+};
+
+// https://github.dev/ndom91/react-timezone-select
+export const genTzSelect = (labelStyle: ILabelStyle = "original") => {
+  const displayValue = "UTC";
+  const maxAbbrLength = 4;
+
+  const options = Object.entries(allTimezones)
+    .map((zone) => {
+      try {
+        const now = spacetime.now(zone[0]);
+        const tz = now.timezone();
+        const tzStrings = soft(zone[0]);
+
+        let label = "";
+
+        const standardAbbr = tzStrings?.[0]?.standard?.abbr ?? "";
+        const dstAbbr = tzStrings?.[0]?.daylight?.abbr ?? standardAbbr;
+
+        let abbr = now.isDST() ? dstAbbr : standardAbbr;
+
+        const standardAltName = tzStrings?.[0]?.standard?.name ?? "";
+        const dstAltName = tzStrings?.[0]?.daylight?.name ?? standardAltName;
+
+        let altName = now.isDST() ? dstAltName : standardAltName;
+
+        const min = tz.current.offset * 60;
+        const hr =
+          `${(min / 60) ^ 0}:` + (min % 60 === 0 ? "00" : Math.abs(min % 60));
+        const prefix = `(${displayValue}${hr.includes("-") ? hr : `+${hr}`}) ${
+          zone[1]
+        }`;
+
+        switch (labelStyle) {
+          case "original":
+            label = prefix;
+            break;
+          case "altName":
+            label = `${prefix} ${altName ? `(${altName})` : ""}`;
+            break;
+          case "abbrev":
+            label = `${prefix} (${abbr.substring(0, maxAbbrLength)})`;
+            break;
+          default:
+            label = `${prefix}`;
+        }
+
+        return {
+          value: tz.name,
+          abbr: abbr,
+          offset: tz.current.offset,
+          text: label,
+          altName: altName,
+        };
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean)
+    .sort(
+      (a: ITimezoneOption, b: ITimezoneOption) =>
+        (a?.offset ?? 0) - (b?.offset ?? 0)
+    );
+
+  quickSave(options);
 };
